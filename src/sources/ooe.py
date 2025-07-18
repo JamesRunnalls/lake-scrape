@@ -30,6 +30,8 @@ def temperature(stations, filesystem, min_date):
                 df["time"] = pd.to_datetime(df['Timestamp']).astype('int64') // 10**9
                 df["value"] = df["Value"]
                 df = df[["time", "value"]]
+                df['value'] = pd.to_numeric(df['value'], errors='coerce')
+                df = df.dropna(subset=['value'])
                 df = df.sort_values("time")
                 write_local_data(os.path.join(folder, key), df)
             date = datetime.fromisoformat(station["timestamp"]).timestamp()
@@ -42,6 +44,7 @@ def temperature(stations, filesystem, min_date):
                         "label": station["station_name"],
                         "last_time": date,
                         "last_value": value,
+                        "depth": "surface",
                         "url": f"https://hydro.ooe.gv.at/#/overview/Wasserstand/station/{station['station_id']}/{quote(station['station_name'])}/Wassertemperatur",
                         "source": "Land Oberösterreich",
                         "icon": stations[station["station_id"]]["icon"],

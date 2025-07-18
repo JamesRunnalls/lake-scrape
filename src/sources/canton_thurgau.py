@@ -35,6 +35,7 @@ def temperature(stations, filesystem, min_date):
                             "label": f["metadata_station_name"],
                             "last_time": date,
                             "last_value": float(f["L1_ts_value"]),
+                            "depth": "surface",
                             "url": "http://www.hydrodaten.tg.ch/app/index.html#{}".format(f["metadata_station_no"]),
                             "source": "Kanton Thurgau",
                             "icon": icon,

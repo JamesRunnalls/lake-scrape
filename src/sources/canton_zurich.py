@@ -23,15 +23,17 @@ def temperature(stations, filesystem, min_date):
                 date = datetime.strptime(str(row.iloc[3] + row.iloc[2]), "%d.%m.%Y%H:%M")
                 date = swiss_timezone.localize(date).timestamp()
                 df = pd.DataFrame({'time': [date], "value": [float(row.iloc[4])]})
-                write_local_data(os.path.join(folder, stations[label]["id"]), df)
+                key = "canton_zurich_" + stations[label]["id"]
+                write_local_data(os.path.join(folder, key), df)
                 if date > min_date:
                     features.append({
                         "type": "Feature",
-                        "id": stations[label]["id"],
+                        "id": key,
                         "properties": {
                             "label": label,
                             "last_time": date,
                             "last_value": float(row.iloc[4]),
+                            "depth": "surface" if stations[label]["icon"] == "lake" else False,
                             "url": "https://www.zh.ch/de/umwelt-tiere/wasser-gewaesser/messdaten/wassertemperaturen.html",
                             "source": "Kanton Zurich",
                             "icon": stations[label]["icon"],

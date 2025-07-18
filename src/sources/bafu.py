@@ -27,6 +27,7 @@ def temperature(stations, filesystem, min_date):
                         "label": f["properties"]["label"],
                         "last_time": date,
                         "last_value": float(f["properties"]["last_value"]),
+                        "depth": False,
                         "url": "https://www.hydrodaten.admin.ch/en/seen-und-fluesse/stations/{}".format(
                             f["properties"]["key"]),
                         "source": "BAFU Hydrodaten",

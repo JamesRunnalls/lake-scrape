@@ -8,7 +8,7 @@ from sources.functions import write_local_data
 def temperature(stations, filesystem, min_date):
     """
     Water temperature data from Zurich Police
-    http://www.hydrodaten.tg.ch
+    https://tecdottir.herokuapp.com
     """
     features = []
     folder = os.path.join(filesystem, "media/lake-scrape/temperature")
@@ -32,6 +32,8 @@ def temperature(stations, filesystem, min_date):
             df = pd.DataFrame({'time': time, "value": values})
             df["time"] = pd.to_datetime(df["time"], format="%Y-%m-%dT%H:%M:%S.%fZ", utc=True).astype(
                 int) / 10 ** 9
+            df['value'] = pd.to_numeric(df['value'], errors='coerce')
+            df = df.dropna(subset=['value'])
             df = df.sort_values("time")
             key = "zurich_police_{}".format(station["id"])
             write_local_data(os.path.join(folder, key), df)
@@ -45,6 +47,7 @@ def temperature(stations, filesystem, min_date):
                         "label": station["label"],
                         "last_time": date,
                         "last_value": row["value"],
+                        "depth": 1,
                         "url": "https://www.tecson-data.ch/zurich/{}/index.php".format(station["id"]),
                         "source": "Stadtpolizei Zürich",
                         "icon": "lake",

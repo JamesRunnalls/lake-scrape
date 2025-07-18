@@ -27,6 +27,7 @@ def temperature(stations, filesystem, min_date):
                             "label": station["label"],
                             "last_time": date,
                             "last_value": data["value"],
+                            "depth": station["depth"],
                             "url": "https://www.datalakes-eawag.ch/datadetail/{}".format(station["id"]),
                             "source": "Datalakes",
                             "icon": "lake",
