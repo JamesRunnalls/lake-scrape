@@ -68,8 +68,20 @@ def main(params):
         s3 = boto3.client("s3", aws_access_key_id=params["aws_id"], aws_secret_access_key=params["aws_key"])
         s3.upload_file(local_file, bucket_key, "insitu/summary/water_temperature.geojson")
 
+    fail_file = os.path.join(params["filesystem"], "media/lake-scrape/failed.json")
+    if os.path.exists(fail_file):
+        with open(fail_file, 'r') as f:
+            fail_list = json.load(f)
+    else:
+        fail_list = []
+    with open(fail_file, 'w') as f:
+        json.dump(failed, f)
+
     if len(failed) > 0:
-        raise ValueError("Failed for {}".format(", ".join(failed)))
+        print("Failed for {}".format(", ".join(failed)))
+        for f in failed:
+            if f not in fail_list:
+                raise ValueError("New failures")
 
 
 if __name__ == "__main__":
