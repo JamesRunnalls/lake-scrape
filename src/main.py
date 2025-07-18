@@ -43,7 +43,7 @@ def main(params):
             else:
                 failed.append(key)
 
-    if params["merge"]:
+    if params["merge"] and params["bucket"]:
         response = requests.get("{}/insitu/summary/water_temperature.geojson".format(params["bucket"]))
         if response.status_code == 200:
             ids = [f["id"] for f in features]
