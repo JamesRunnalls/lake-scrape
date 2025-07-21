@@ -21,6 +21,7 @@ def run_process(key, config, type, filesystem, min_date):
         print(f"{key}: {type} took {end_time - start_time:.2f} seconds")
         return key, result
     except Exception as e:
+        print(e)
         return key, False
 
 def main(params):
