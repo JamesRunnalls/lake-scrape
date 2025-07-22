@@ -12,6 +12,7 @@ def write_local_data(filepath, data):
         station_year_data = df[df['time'].dt.year == year]
         if not os.path.exists(station_year_file):
             os.makedirs(os.path.dirname(station_year_file), exist_ok=True)
+            station_year_data = station_year_data.dropna(subset=['value'])
             station_year_data['time'] = station_year_data['time'].astype('int64') // 10 ** 9
             station_year_data.to_csv(station_year_file, index=False)
         else:
@@ -20,6 +21,7 @@ def write_local_data(filepath, data):
             combined = pd.concat([df_existing, station_year_data])
             combined = combined.drop_duplicates(subset=['time'], keep='last')
             combined = combined.sort_values(by='time')
+            combined = combined.dropna(subset=['value'])
             combined['time'] = combined['time'].astype('int64') // 10 ** 9
             combined.to_csv(station_year_file, index=False)
 

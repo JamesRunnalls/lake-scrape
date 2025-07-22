@@ -25,10 +25,10 @@ def temperature(stations, filesystem, min_date):
                 df = pd.DataFrame(data["series"][0]["data"], columns=["time", "value"])
                 df["time"] = df["time"] / 1000
                 df['value'] = pd.to_numeric(df['value'], errors='coerce')
-                df = df.dropna(subset=['value'])
                 df = df.sort_values("time")
                 key = "srv_annecy"
                 write_local_data(os.path.join(folder, key), df)
+                df = df.dropna(subset=['value'])
                 row = df.iloc[-1]
                 date = row["time"]
                 if date > min_date:

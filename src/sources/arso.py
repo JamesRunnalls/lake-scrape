@@ -21,10 +21,10 @@ def temperature(stations, filesystem, min_date):
             df = df[["time", "value"]]
             df['time'] = pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Ljubljana').astype(int) // 10 ** 9
             df['value'] = pd.to_numeric(df['value'], errors='coerce')
-            df = df.dropna(subset=['value'])
             df = df.sort_values("time")
             key = "arso_{}".format(station["id"])
             write_local_data(os.path.join(folder, key), df)
+            df = df.dropna(subset=['value'])
             row = df.iloc[-1]
             date = row["time"]
             if date > min_date:

@@ -31,7 +31,6 @@ def temperature(stations, filesystem, min_date):
                 df["value"] = df["Value"]
                 df = df[["time", "value"]]
                 df['value'] = pd.to_numeric(df['value'], errors='coerce')
-                df = df.dropna(subset=['value'])
                 df = df.sort_values("time")
                 write_local_data(os.path.join(folder, key), df)
             date = datetime.fromisoformat(station["timestamp"]).timestamp()
