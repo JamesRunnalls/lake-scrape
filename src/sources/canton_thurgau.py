@@ -46,3 +46,34 @@ def temperature(stations, filesystem, min_date):
                                             float(f["metadata_station_latitude"])],
                             "type": "Point"}})
     return features
+
+def level(stations, filesystem, min_date):
+    """
+    Water level data from Canton Thurgau
+    http://www.hydrodaten.tg.ch
+    """
+    response = requests.get("https://www.hydrodaten.tg.ch/data/internet/layers/10/index.json")
+    features = []
+    if response.status_code == 200:
+        for f in response.json():
+            if f["metadata_station_no"] in stations:
+                date = datetime.strptime(f["L1_timestamp"], "%Y-%m-%dT%H:%M:%S.%f%z").timestamp()
+                key = "thurgau_" + f["metadata_station_no"]
+                if date > min_date:
+                    features.append({
+                        "type": "Feature",
+                        "id": key,
+                        "properties": {
+                            "label": f["metadata_station_name"],
+                            "last_time": date,
+                            "last_value": float(f["L1_ts_value"]),
+                            "url": "http://www.hydrodaten.tg.ch/app/index.html#{}".format(f["metadata_station_no"]),
+                            "source": "Kanton Thurgau",
+                            "icon": "lake",
+                            "lake": stations[f["metadata_station_no"]]
+                        },
+                        "geometry": {
+                            "coordinates": [float(f["metadata_station_longitude"]),
+                                            float(f["metadata_station_latitude"])],
+                            "type": "Point"}})
+    return features

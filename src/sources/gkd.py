@@ -44,3 +44,39 @@ def temperature(stations, filesystem, min_date):
                         "coordinates": station["coordinates"],
                         "type": "Point"}})
     return features
+
+def level(stations, filesystem, min_date):
+    """
+    Water level data from Gewässerkundlicher Dienst Bayern
+    https://www.gkd.bayern.de/en/lakes/waterlevel
+    """
+    features = []
+    for station in stations:
+        response = requests.get(f"https://www.gkd.bayern.de/en/lakes/waterlevel/{station['area']}/{station['id']}/current-values/table")
+        if response.status_code == 200:
+            df = parse_html_table(response.text)
+            df.columns = ["time", "value"]
+            df['time'] = pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Berlin').astype(int) // 10 ** 9
+            df['value'] = pd.to_numeric(df['value'], errors='coerce')
+            df = df.sort_values("time")
+            key = "gkd_{}".format(station["id"])
+            df = df.dropna(subset=['value'])
+            row = df.iloc[-1]
+            date = row["time"]
+            if date > min_date:
+                features.append({
+                    "type": "Feature",
+                    "id": key,
+                    "properties": {
+                        "label": station["label"],
+                        "last_time": date,
+                        "last_value": row["value"],
+                        "url": f"https://www.gkd.bayern.de/en/lakes/watertemperature/{station['area']}/{station['id']}/current-values",
+                        "source": "Gewässerkundlicher Dienst Bayern",
+                        "icon": station["icon"],
+                        "lake": station["lake"]
+                    },
+                    "geometry": {
+                        "coordinates": station["coordinates"],
+                        "type": "Point"}})
+    return features

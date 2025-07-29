@@ -3,7 +3,6 @@ import os
 import json
 import time
 import boto3
-import tempfile
 import requests
 import argparse
 import importlib
@@ -45,7 +44,7 @@ def main(params):
                 failed.append(key)
 
     if params["merge"] and params["bucket"]:
-        response = requests.get("{}/insitu/summary/water_temperature.geojson".format(params["bucket"]))
+        response = requests.get("{}/insitu/summary/water_{}.geojson".format(params["bucket"], params["type"]))
         if response.status_code == 200:
             ids = [f["id"] for f in features]
             old_features = response.json()["features"]
@@ -55,19 +54,19 @@ def main(params):
 
     geojson = {
         "type": "FeatureCollection",
-        "name": "Current Water Temperatures",
+        "name": "Current water {}".format(params["type"]),
         "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}},
         "features": features
     }
 
-    local_file = os.path.join(params["filesystem"], "media/lake-scrape/water_temperature.geojson")
+    local_file = os.path.join(params["filesystem"], "media/lake-scrape/water_{}.geojson".format(params["type"]))
     with open(local_file, 'w') as json_file:
         json.dump(geojson, json_file)
 
     if params["upload"]:
         bucket_key = params["bucket"].split(".")[0].split("//")[1]
         s3 = boto3.client("s3", aws_access_key_id=params["aws_id"], aws_secret_access_key=params["aws_key"])
-        s3.upload_file(local_file, bucket_key, "insitu/summary/water_temperature.geojson")
+        s3.upload_file(local_file, bucket_key, "insitu/summary/water_{}.geojson".format(params["type"]))
 
     fail_file = os.path.join(params["filesystem"], "media/lake-scrape/failed.json")
     if os.path.exists(fail_file):

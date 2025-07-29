@@ -1,6 +1,6 @@
 {
   "canton_thurgau": ["M1090", "F1150", "00005"],
-  "bafu": "All",
+  "bafu": {"2606": "geneva", "2104": "walensee", "2152": "lucerne", "2030": "thun", "2457": "brienz"},
   "canton_zurich": {
     "Zürichsee-Oberrieden": {
       "id": "502",

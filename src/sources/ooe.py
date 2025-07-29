@@ -54,3 +54,39 @@ def temperature(stations, filesystem, min_date):
                         "type": "Point"}})
 
     return features
+
+def level(stations, filesystem, min_date):
+    """
+    Water level data from Province of Upper Austria
+    https://hydro.ooe.gv.at/#/overview/Wasserstand
+    """
+    features = []
+    response = requests.get("https://hydro.ooe.gv.at/daten/internet/layers/1/index.json")
+    if response.status_code != 200:
+        raise ValueError("Failed to collect data")
+
+    data = response.json()
+    for station in data:
+        if station["station_id"] in stations.keys():
+            lat, lon = cart_to_latlng(station["station_carteasting"], station["station_cartnorthing"])
+            key = f"ooe_{station['station_id']}"
+            date = datetime.fromisoformat(station["timestamp"]).timestamp()
+            value = float(station["ts_value"])
+            if date > min_date:
+                features.append({
+                    "type": "Feature",
+                    "id": key,
+                    "properties": {
+                        "label": station["station_name"],
+                        "last_time": date,
+                        "last_value": value,
+                        "url": f"https://hydro.ooe.gv.at/#/overview/Wasserstand/station/{station['station_id']}/{quote(station['station_name'])}/Wasserstand",
+                        "source": "Land Oberösterreich",
+                        "icon": "lake",
+                        "lake": stations[station["station_id"]]["lake"]
+                    },
+                    "geometry": {
+                        "coordinates": [lon, lat],
+                        "type": "Point"}})
+
+    return features

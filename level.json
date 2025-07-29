@@ -1,0 +1,232 @@
+{
+  "bafu": {
+    "2031": "ageri",
+    "2137": "baldegg",
+    "2208": "biel",
+    "2032": "constance",
+    "2043": "constance",
+    "2023": "brienz",
+    "2097": "hallwil",
+    "2007": "joux",
+    "2154": "neuchatel",
+    "2642": "neuchatel",
+    "2057": "brenet",
+    "2026": "geneva",
+    "2028": "geneva",
+    "2027": "geneva",
+    "2101": "lugano",
+    "2021": "lugano",
+    "2074": "maggiore",
+    "2022": "maggiore",
+    "2484": "lauerz",
+    "2004": "murten",
+    "2088": "sarnen",
+    "2168": "sempach",
+    "2072": "sils",
+    "2073": "silvaplana",
+    "2066": "stmoritz",
+    "2093": "thun",
+    "2025": "lucerne",
+    "2207": "lucerne",
+    "2118": "walensee",
+    "2017": "zug",
+    "2209": "zurich"
+  },
+  "canton_thurgau": { "F1150": "constance", "S2340": "huttwilersee" },
+  "ooe": {
+    "16581": { "lake": "mondsee" },
+    "16575": { "lake": "traunsee" },
+    "16576": { "lake": "traunsee" }
+  },
+  "canton_zurich": {
+    "Pfäffikersee": {
+      "id": "LH 2081",
+      "icon": "lake",
+      "lake": "pfaffikon",
+      "coordinates": [8.774985, 47.362998]
+    },
+    "Greifensee": {
+      "id": "LH 2082",
+      "icon": "lake",
+      "lake": "greifensee",
+      "coordinates": [8.676985, 47.362998]
+    }
+  },
+  "gkd": [
+    {
+      "id": "lindau-20001001",
+      "area": "iller_lech",
+      "label": "Lindau, Bodensee",
+      "icon": "lake",
+      "lake": "constance",
+      "coordinates": [9.6849, 47.5446]
+    },
+    {
+      "id": "buehl-11436003",
+      "area": "iller_lech",
+      "label": "Bühl",
+      "icon": "lake",
+      "lake": "grosseralpsee",
+      "coordinates": [10.192212401933935, 47.57059384528148]
+    },
+    {
+      "id": "kurzberg-11452055",
+      "area": "iller_lech",
+      "label": "Kurzberg",
+      "icon": "lake",
+      "lake": "niedersonthofener",
+      "coordinates": [10.28056555725729, 47.63715420933842]
+    },
+    {
+      "id": "gruentensee-seepegel-12403000",
+      "area": "iller_lech",
+      "label": "Grüntensee",
+      "icon": "lake",
+      "lake": "gruntensee",
+      "coordinates": [10.458615315873333, 47.620349368560895]
+    },
+    {
+      "id": "moos-12312006",
+      "area": "iller_lech",
+      "label": "Moos",
+      "icon": "lake",
+      "lake": "weissensee",
+      "coordinates": [10.647482594597788, 47.57235280569201]
+    },
+    {
+      "id": "vilsen-12311003",
+      "area": "iller_lech",
+      "label": "Vilsen",
+      "icon": "lake",
+      "lake": "hopfensee",
+      "coordinates": [10.682548711724472, 47.60230112032472]
+    },
+    {
+      "id": "muehlberg-12315004",
+      "area": "iller_lech",
+      "label": "Mühlberg",
+      "icon": "lake",
+      "lake": "bannwaldsee",
+      "coordinates": [10.771262079275374, 47.59311559640476]
+    },
+    {
+      "id": "seehausen-16617005",
+      "area": "isar",
+      "label": "Seehausen",
+      "icon": "lake",
+      "lake": "staffelsee",
+      "coordinates": [11.180795861744347, 47.68668004931863]
+    },
+    {
+      "id": "riegsee-16619000",
+      "area": "isar",
+      "label": "Riegsee",
+      "icon": "lake",
+      "lake": "riegsee",
+      "coordinates": [11.232609443423724, 47.69766066474127]
+    },
+    {
+      "id": "kochel-grauer-baer-16406000",
+      "area": "isar",
+      "label": "Kochel Grauer Bär",
+      "icon": "lake",
+      "lake": "kochelsee",
+      "coordinates": [11.359484619735646, 47.64380834930618]
+    },
+    {
+      "id": "altjoch-kochel-16405801",
+      "area": "isar",
+      "label": "Altjoch Kochel",
+      "icon": "lake",
+      "lake": "kochelsee",
+      "coordinates": [11.339029070593638, 47.63425123058663]
+    },
+    {
+      "id": "walchensee-16323004",
+      "area": "isar",
+      "label": "Walchensee",
+      "icon": "lake",
+      "lake": "walchensee",
+      "coordinates": [11.334398623562741, 47.60516494862276]
+    },
+    {
+      "id": "stegen-16602008",
+      "area": "isar",
+      "label": "Stegen",
+      "icon": "lake",
+      "lake": "ammersee",
+      "coordinates": [11.13081485830967, 48.076422245506414]
+    },
+    {
+      "id": "woerthsee-16651003",
+      "area": "isar",
+      "label": "Wörthsee",
+      "icon": "lake",
+      "lake": "worthsee",
+      "coordinates": [11.161937629063956, 48.051414959620224]
+    },
+    {
+      "id": "starnberg-16663002",
+      "area": "isar",
+      "label": "Starnberg",
+      "icon": "lake",
+      "lake": "starnberger",
+      "coordinates": [11.349332239516125, 47.9972417029955]
+    },
+    {
+      "id": "st-quirin-18201008",
+      "area": "isar",
+      "label": "St. Quirin",
+      "icon": "lake",
+      "lake": "tegernsee",
+      "coordinates": [11.742972590246632, 47.726547060532255]
+    },
+    {
+      "id": "schliersee-18222008",
+      "area": "isar",
+      "label": "Schliersee",
+      "icon": "lake",
+      "lake": "schliersee",
+      "coordinates": [11.868053876802653, 47.731141013734415]
+    },
+    {
+      "id": "krottenmuehl-18197501",
+      "area": "isar",
+      "label": "Krottenmühl",
+      "icon": "lake",
+      "lake": "simssee",
+      "coordinates": [12.245599140049954, 47.88695597505941]
+    },
+    {
+      "id": "stock-18400503",
+      "area": "isar",
+      "label": "Stock",
+      "icon": "lake",
+      "lake": "chiemsee",
+      "coordinates": [12.366748452352818, 47.86175555254394]
+    },
+    {
+      "id": "koenigssee-18624806",
+      "area": "inn",
+      "label": "Königssee",
+      "icon": "lake",
+      "lake": "konigsee",
+      "coordinates": [12.990080943056947, 47.587216651285416]
+    }
+  ],
+  "ktn": {
+    "217257": {"coordinates": [13.773, 46.739]},
+    "212795": {"coordinates": [13.914, 46.577]},
+    "217273": {"coordinates": [13.748, 46.773]},
+    "213579": {"coordinates": [14.619, 46.565]},
+    "213488": {"coordinates": [14.168, 46.588]},
+    "213348": {"coordinates": [14.595, 46.605]},
+    "213801": {"coordinates": [14.42, 46.786]},
+    "217265": {"coordinates": [14.145, 46.704]},
+    "212514": {"coordinates": [13.571, 46.801]},
+    "213272": {"coordinates": [13.903, 46.652]},
+    "212746": {"coordinates": [13.438, 46.628]},
+    "212563": {"coordinates": [13.295, 46.716]},
+    "212985": {"coordinates": [14.138, 46.634]}
+  }
+}
