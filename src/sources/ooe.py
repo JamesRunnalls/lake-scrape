@@ -71,7 +71,7 @@ def level(stations, filesystem, min_date):
             lat, lon = cart_to_latlng(station["station_carteasting"], station["station_cartnorthing"])
             key = f"ooe_{station['station_id']}"
             date = datetime.fromisoformat(station["timestamp"]).timestamp()
-            value = float(station["ts_value"])
+            value = stations[station["station_id"]]["zero"] + float(station["ts_value"]) / 100
             if date > min_date:
                 features.append({
                     "type": "Feature",

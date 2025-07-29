@@ -34,9 +34,9 @@
   },
   "canton_thurgau": { "F1150": "constance", "S2340": "huttwilersee" },
   "ooe": {
-    "16581": { "lake": "mondsee" },
-    "16575": { "lake": "traunsee" },
-    "16576": { "lake": "traunsee" }
+    "16581": { "lake": "mondsee", "zero": 479.33 },
+    "16575": { "lake": "traunsee", "zero": 420.62 },
+    "16576": { "lake": "traunsee","zero": 421.31 }
   },
   "canton_zurich": {
     "Pfäffikersee": {
