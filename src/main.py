@@ -27,7 +27,7 @@ def main(params):
     repo = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
     min_date = (datetime.now() - timedelta(days=14)).timestamp()
     features = []
-    failed = []
+    failed = {}
     with open(os.path.join(repo, f'{params["type"]}.json'), 'r') as file:
         stations = json.load(file)
 
@@ -41,7 +41,7 @@ def main(params):
             if isinstance(result, list):
                 features = features + result
             else:
-                failed.append(key)
+                failed[key] = 1
 
     if params["merge"] and params["bucket"]:
         response = requests.get("{}/insitu/summary/water_{}.geojson".format(params["bucket"], params["type"]))
@@ -68,20 +68,23 @@ def main(params):
         s3 = boto3.client("s3", aws_access_key_id=params["aws_id"], aws_secret_access_key=params["aws_key"])
         s3.upload_file(local_file, bucket_key, "insitu/summary/water_{}.geojson".format(params["type"]))
 
-    fail_file = os.path.join(params["filesystem"], "media/lake-scrape/failed.json")
+    fail_file = os.path.join(params["filesystem"], "media/lake-scrape/failed_{}.json".format(params["type"]))
     if os.path.exists(fail_file):
         with open(fail_file, 'r') as f:
             fail_list = json.load(f)
     else:
-        fail_list = []
+        fail_list = {}
+
+    for key in failed.keys():
+        if key in fail_list:
+            failed[key] = failed[key] + fail_list[key]
     with open(fail_file, 'w') as f:
         json.dump(failed, f)
 
-    if len(failed) > 0:
-        print("Failed for {}".format(", ".join(failed)))
-        for f in failed:
-            if f not in fail_list:
-                raise ValueError("New failures")
+    if len(failed.keys()) > 0:
+        print("Failed for {}".format(", ".join(failed.keys())))
+        if 4 in failed.values():
+            raise ValueError("WARNING. Continual failures for: {}".format(", ".join([key for key, value in failed.items() if value == 4])))
 
 
 if __name__ == "__main__":
