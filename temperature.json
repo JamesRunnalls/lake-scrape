@@ -247,12 +247,12 @@
   "ooe": {
     "16581": { "lake": "mondsee", "icon": "lake" },
     "16562": { "lake": false, "icon": "lake" },
-    "16566": { "lake": false, "icon": "lake" },
+    "16566": { "lake": "wolfgangsee", "icon": "lake" },
     "16584": { "lake": false, "icon": "river" },
-    "16579": { "lake": false, "icon": "lake" },
-    "16585": { "lake": false, "icon": "lake" },
-    "986446": { "lake": false, "icon": "lake" },
-    "16589": { "lake": false, "icon": "lake" },
+    "16579": { "lake": "irrsee", "icon": "lake" },
+    "16585": { "lake": "attersee", "icon": "lake" },
+    "986446": { "lake": "attersee", "icon": "lake" },
+    "16589": { "lake": "attersee", "icon": "lake" },
     "16575": { "lake": "traunsee", "icon": "lake" },
     "16576": { "lake": "traunsee", "icon": "lake" },
     "16603": { "lake": false, "icon": "lake" }
@@ -403,19 +403,19 @@
     }
   ],
   "ktn": {
-    "217257": {"coordinates": [13.773, 46.739]},
-    "212795": {"coordinates": [13.914, 46.577]},
-    "217273": {"coordinates": [13.748, 46.773]},
-    "213579": {"coordinates": [14.619, 46.565]},
-    "213488": {"coordinates": [14.168, 46.588]},
-    "213348": {"coordinates": [14.595, 46.605]},
-    "213801": {"coordinates": [14.42, 46.786]},
-    "217265": {"coordinates": [14.145, 46.704]},
-    "212514": {"coordinates": [13.571, 46.801]},
-    "213272": {"coordinates": [13.903, 46.652]},
-    "212746": {"coordinates": [13.438, 46.628]},
-    "217331": {"coordinates": [14.572, 46.588]},
-    "212563": {"coordinates": [13.295, 46.716]},
-    "212985": {"coordinates": [14.138, 46.634]}
+    "217257": {"coordinates": [13.773, 46.739], "lake":  false},
+    "212795": {"coordinates": [13.914, 46.577], "lake":  "faaker"},
+    "217273": {"coordinates": [13.748, 46.773], "lake":  false},
+    "213579": {"coordinates": [14.619, 46.565], "lake":  false},
+    "213488": {"coordinates": [14.168, 46.588], "lake":  false},
+    "213348": {"coordinates": [14.595, 46.605], "lake":  false},
+    "213801": {"coordinates": [14.42, 46.786], "lake":  false},
+    "217265": {"coordinates": [14.145, 46.704], "lake":  false},
+    "212514": {"coordinates": [13.571, 46.801], "lake":  "millstaetter"},
+    "213272": {"coordinates": [13.903, 46.652], "lake":  "ossiacher"},
+    "212746": {"coordinates": [13.438, 46.628], "lake":  false},
+    "217331": {"coordinates": [14.572, 46.588], "lake":  false},
+    "212563": {"coordinates": [13.295, 46.716], "lake":  false},
+    "212985": {"coordinates": [14.138, 46.634], "lake":  "worthersee"}
   }
 }

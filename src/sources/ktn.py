@@ -37,7 +37,7 @@ def temperature(stations, filesystem, min_date):
                             "url": "https://hydrographie.ktn.gv.at/gewasser/seen-wasserstaende",
                             "source": "Hydrographischer Dienst Land Kärnten",
                             "icon": "lake",
-                            "lake": False
+                            "lake": stations[s_id]["lake"]
                         },
                         "geometry": {
                             "coordinates": stations[s_id]["coordinates"],
