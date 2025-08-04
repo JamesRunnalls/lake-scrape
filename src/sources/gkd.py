@@ -71,7 +71,7 @@ def level(stations, filesystem, min_date):
                         "label": station["label"],
                         "last_time": date,
                         "last_value": row["value"],
-                        "url": f"https://www.gkd.bayern.de/en/lakes/watertemperature/{station['area']}/{station['id']}/current-values",
+                        "url": f"https://www.gkd.bayern.de/en/lakes/waterlevel/{station['area']}/{station['id']}/current-values",
                         "source": "Gewässerkundlicher Dienst Bayern",
                         "icon": station["icon"],
                         "lake": station["lake"]
