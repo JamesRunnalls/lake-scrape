@@ -417,5 +417,9 @@
     "217331": {"coordinates": [14.572, 46.588], "lake":  false},
     "212563": {"coordinates": [13.295, 46.716], "lake":  false},
     "212985": {"coordinates": [14.138, 46.634], "lake":  "worthersee"}
-  }
+  },
+  "igb": [
+    {"name": "arendsee", "label":  "Arendsee", "lake": "arendsee", "coords": [11.459153, 52.888901]},
+    {"name": "grosser_mueggelsee", "label":  "Georg Mothes", "lake": false, "coords": [13.650014,52.446172]}
+  ]
 }
