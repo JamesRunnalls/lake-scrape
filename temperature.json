@@ -427,5 +427,8 @@
     {"id": "204131", "lake": "grabensee"},
     {"id": "203604", "lake": "mattsee"},
     {"id": "203612", "lake": "obertrumer"},
-    {"id": "203646", "lake": "wolfgangsee"}]
+    {"id": "203646", "lake": "wolfgangsee"},
+    {"id": "203588", "lake": "wallersee"},
+    {"id": "203117", "lake": "zeller"}
+  ]
 }
