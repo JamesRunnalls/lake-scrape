@@ -22,7 +22,8 @@ def temperature(stations, filesystem, min_date):
                 df = parse_html_table(result).iloc[5:-1, [0, station["column"]]]
                 df.columns = ["hour", "value"]
                 df['datetime'] = date_str + ' ' + df['hour']
-                df['time'] = pd.to_datetime(df['datetime'], format='%d-%m-%Y %H:%M').dt.tz_localize('Europe/Paris').astype(int) // 10 ** 9
+                df['time'] = (pd.to_datetime(df['datetime'], format='%d-%m-%Y %H:%M').dt.tz_localize('Europe/Paris')
+                              - pd.Timestamp("1970-01-01", tz="UTC")).dt.total_seconds()
                 df = df[["time", "value"]]
                 df['value'] = pd.to_numeric(df['value'], errors='coerce')
                 df = df.sort_values("time")

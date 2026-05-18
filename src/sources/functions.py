@@ -13,7 +13,7 @@ def write_local_data(filepath, data):
         if not os.path.exists(station_year_file):
             os.makedirs(os.path.dirname(station_year_file), exist_ok=True)
             station_year_data = station_year_data.dropna(subset=['value'])
-            station_year_data['time'] = station_year_data['time'].astype('int64') // 10 ** 9
+            station_year_data['time'] = (station_year_data['time'] - pd.Timestamp("1970-01-01")).dt.total_seconds().astype('int64')
             station_year_data.to_csv(station_year_file, index=False)
         else:
             df_existing = pd.read_csv(station_year_file)
@@ -22,7 +22,7 @@ def write_local_data(filepath, data):
             combined = combined.drop_duplicates(subset=['time'], keep='last')
             combined = combined.sort_values(by='time')
             combined = combined.dropna(subset=['value'])
-            combined['time'] = combined['time'].astype('int64') // 10 ** 9
+            combined['time'] = (combined['time'] - pd.Timestamp("1970-01-01")).dt.total_seconds().astype('int64')
             combined.to_csv(station_year_file, index=False)
 
 def ch1903_plus_to_latlng(x, y):

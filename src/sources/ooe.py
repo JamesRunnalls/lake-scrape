@@ -27,7 +27,8 @@ def temperature(stations, filesystem, min_date):
             if response.status_code == 200:
                 r = response.json()[0]
                 df = pd.DataFrame(r["data"], columns=r["columns"].split(","))
-                df["time"] = pd.to_datetime(df['Timestamp']).astype('int64') // 10**9
+                df["time"] = (pd.to_datetime(df['Timestamp'], utc=True)
+                              - pd.Timestamp("1970-01-01", tz="UTC")).dt.total_seconds()
                 df["value"] = df["Value"]
                 df = df[["time", "value"]]
                 df['value'] = pd.to_numeric(df['value'], errors='coerce')

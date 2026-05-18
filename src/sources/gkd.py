@@ -18,7 +18,8 @@ def temperature(stations, filesystem, min_date):
         if response.status_code == 200:
             df = parse_html_table(response.text)
             df.columns = ["time", "value"]
-            df['time'] = pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Berlin').astype(int) // 10 ** 9
+            df['time'] = (pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Berlin')
+                      - pd.Timestamp("1970-01-01", tz="UTC")).dt.total_seconds()
             df['value'] = pd.to_numeric(df['value'], errors='coerce')
             df = df.sort_values("time")
             key = "gkd_{}".format(station["id"])
@@ -56,7 +57,8 @@ def level(stations, filesystem, min_date):
         if response.status_code == 200:
             df = parse_html_table(response.text)
             df.columns = ["time", "value"]
-            df['time'] = pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Berlin').astype(int) // 10 ** 9
+            df['time'] = (pd.to_datetime(df['time'], format='%d.%m.%Y %H:%M').dt.tz_localize('Europe/Berlin')
+                      - pd.Timestamp("1970-01-01", tz="UTC")).dt.total_seconds()
             df['value'] = pd.to_numeric(df['value'], errors='coerce')
             df = df.sort_values("time")
             key = "gkd_{}".format(station["id"])

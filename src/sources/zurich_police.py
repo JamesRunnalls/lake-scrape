@@ -30,8 +30,8 @@ def temperature(stations, filesystem, min_date):
                 values.append(float(d["values"]["water_temperature"]["value"]))
 
             df = pd.DataFrame({'time': time, "value": values})
-            df["time"] = pd.to_datetime(df["time"], format="%Y-%m-%dT%H:%M:%S.%fZ", utc=True).astype(
-                int) / 10 ** 9
+            df["time"] = (pd.to_datetime(df["time"], format="%Y-%m-%dT%H:%M:%S.%fZ", utc=True)
+                          - pd.Timestamp("1970-01-01", tz="UTC")).dt.total_seconds()
             df['value'] = pd.to_numeric(df['value'], errors='coerce')
             df = df.sort_values("time")
             key = "zurich_police_{}".format(station["id"])
