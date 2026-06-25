@@ -46,10 +46,11 @@ def main(params):
     if params["merge"] and params["bucket"]:
         response = requests.get("{}/insitu/summary/water_{}.geojson".format(params["bucket"], params["type"]))
         if response.status_code == 200:
+            merge_min_date = (datetime.now() - timedelta(days=61)).timestamp()
             ids = [f["id"] for f in features]
             old_features = response.json()["features"]
             for f in old_features:
-                if f["id"] not in ids:
+                if f["id"] not in ids and f["properties"].get("last_time", 0) > merge_min_date:
                     features.append(f)
 
     geojson = {
